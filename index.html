@@ -174,6 +174,17 @@
       //    scrub("aces high", ["high", "aces", "hearts"]) // returns "xxxx xxxx"
       //    scrub("", ["high", "aces""]) // returns ""
       // 🌟 HINT: useful array methods to use are `push`, `indexOf`, `split`, `join`
+      let words = text.split(" ")
+      for (let i in words) {
+        if (forb.includes(words[i])) {
+          let word = words[i].split("")
+          word.fill("x")
+          let wordJ = word.join("")
+          words[i] = wordJ
+        }
+      }
+      let finishedProduct = words.join(" ")
+      return finishedProduct
     }
     // 👉 CHALLENGE 5
     function normalizePhoneNumber(stri) {
@@ -224,6 +235,24 @@
       // 🌟 HINT: research using `Math.random` to obtain a number from 1 to 6
       // 🌟 HINT: use `while(true)` to throw the dice indefinitely, but avoid an infinite loop by making sure to break out eventually
       // 🌟 HINT: you need to keep track of the total number of throws, as well as how many sixes in a row
+      let numOfThrows = 0
+      let threeSixxes = false
+      let record = []
+      while (threeSixxes === false) {
+        let ran = Math.random(1, 6)
+        record.push(ran)
+        numOfThrows++
+        if (record.length === 3) {
+          if (record[0] === 6 && record[1] === 6 && record[2] === 6) {
+            threeSixxes = true
+          } else {
+            record.pop()
+            record.pop()
+            record.pop()
+          }
+        }
+      }
+      return numOfThrows
     }
 
     // 🧪 TESTS, do not make any changes below this line ===================
